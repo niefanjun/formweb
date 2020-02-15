@@ -2,11 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>欢迎使用</title>
   <script type="text/javascript">
-  	document.documentElement.style.fontSize = document.documentElement.clientWidth / 100 + 'px';
+	function bodyLoaded (cb) {
+		if (document.body) {
+			cb && cb()
+		} else {
+		document.addEventListener('DOMContentLoaded', function () {
+			cb && cb()
+		}, false)
+	  }
+	}
+	function screenResize() {
+		console.log('resize');
+		document.documentElement.style.fontSize =( document.documentElement.clientWidth / 750) * 100 + 'px';
+		alert(document.documentElement.clientWidth);
+		bodyLoaded(function() {
+			// 测试rem的准确性，如果和预期不一样，则进行缩放
+			let noEl = document.createElement('div')
+			noEl.style.width = '1rem'
+			noEl.style.height = '0'
+			document.body.appendChild(noEl)
+
+			let rate = noEl.clientWidth / window.remUnit
+
+			if (Math.abs(rate - 1) >= 0.01) {
+				docEl.style.fontSize = (window.remUnit / rate) + 'px'
+			}
+
+			document.body.removeChild(noEl)
+		})
+	}
+	bodyLoaded(screenResize);
+	document.addEventListener('DOMContentLoaded', screenResize);
+	window.addEventListener('orientationchange' in window ? 'orientationchange' : 'resize', screenResize);
   </script>
 </head>
 <body>
