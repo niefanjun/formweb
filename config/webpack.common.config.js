@@ -42,7 +42,7 @@ const config = {
 	},
 	resolve: {
 		alias: {
-			images: path.resolve(__dirname, '../src/images')
+			'@images': path.resolve(__dirname, '../src/images')
 		}
 	},
 	plugins: [
