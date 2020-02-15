@@ -16,9 +16,7 @@
 	  }
 	}
 	function screenResize() {
-		console.log('resize');
 		document.documentElement.style.fontSize =( document.documentElement.clientWidth / 750) * 100 + 'px';
-		alert(document.documentElement.clientWidth);
 		bodyLoaded(function() {
 			// 测试rem的准确性，如果和预期不一样，则进行缩放
 			let noEl = document.createElement('div')
