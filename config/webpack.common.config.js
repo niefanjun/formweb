@@ -42,7 +42,7 @@ const config = {
 	},
 	resolve: {
 		alias: {
-			images: path.resolve(__dirname, '../src/images')
+			'@images': path.resolve(__dirname, '../src/images')
 		}
 	},
 	plugins: [
@@ -52,6 +52,5 @@ const config = {
 		})
 	]
 }
-console.log(config);
 
 module.exports = config;

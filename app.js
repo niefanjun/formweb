@@ -1,14 +1,29 @@
 const createError = require('http-errors');
 const express = require('express');
+// 引入json解析中间件
+const bodyParser = require('body-parser');
 const path = require('path');
+const mongoose = require('mongoose');
+
+const Data = require('./server/data.js');
 
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
+// 连接数据库
+const dbRoute = 'mongodb://xxx:xxx@0.0.0.0:27017/xxx';
+mongoose.connect(dbRoute, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+let db = mongoose.connection;
+//检查与数据库的连接是否成功
+db.once('open', () => console.log('connected to the database'));
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 const app = express();
 const config = require('./config/webpack.dev.config.js');
-
 // 开发模式
 if (process.env.NODE_ENV === 'dev') {
 	const compiler = webpack(config);
@@ -21,13 +36,40 @@ if (process.env.NODE_ENV === 'dev') {
 	}));
 }
 
-
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// bodyparser处理json和urlencoded请求
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/home',function(req,res) {
 	res.setHeader('Content-Type', 'text/html');
 	res.sendFile( __dirname + '/dist/index.html' );
 })
+
+app.post('/addData',function(req,res) {
+	const name = req.body.name||'';
+	const phone = req.body.phone||'';
+	if (name&&phone) {
+		const data = new Data();
+		data.name = name;
+		data.phone = phone;
+		data.save((err) => {
+			if (err) return res.json({ success: false, error: err });
+			return res.json({ success: true });
+		})
+	} else {
+		res.json({success: false, error: 'no data input'});
+	}
+})
+
+app.get('/wo8shiPUTONGREN',function(req,res) {
+	Data.find((err, data) => {
+		if (err) return res.json({ success: false, error: err });
+		return res.json({ success: true, data: data });
+	});
+})
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -36,13 +78,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-	// set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
-
 	// render the error page
 	res.status(err.status || 500);
-	res.render('error');
+	res.send('error');
 });
 
 module.exports = app;
