@@ -12,7 +12,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 // 连接数据库
-const dbRoute = 'mongodb://xxx:xxx@xxx:xxx/xxx';
+const dbRoute = 'mongodb://xxxx:xxxx@xxxx:27017/xxxx';
 mongoose.connect(dbRoute, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true

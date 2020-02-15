@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const path = require('path'); 
 
 const prod = merge(common, {
 	mode: 'production',
@@ -55,7 +56,7 @@ const prod = merge(common, {
 			}
 		}),
 		new CleanWebpackPlugin(),
+		new BundleAnalyzerPlugin()
 	]
 });
-
 module.exports = prod
