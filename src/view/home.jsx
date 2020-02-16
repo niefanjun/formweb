@@ -41,7 +41,7 @@ class Home extends React.Component {
 							肖军
 						</div>
 						<div className="title-box">
-							渝北人和支行客户经理
+							客户经理
 						</div>
 					</div>
 					<div className="card-info">
@@ -52,7 +52,7 @@ class Home extends React.Component {
 							微信：15213091496
 						</div>
 						<div className="conect-way">
-							地址：重庆市渝北区人和镇龙寿路879号
+							地址：重庆市渝北区人和镇龙寿路679号
 						</div>
 					</div>
 				</div>
