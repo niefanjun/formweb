@@ -17,11 +17,11 @@ class SubmitDlg extends React.Component {
 					if (resultdata.status === 200&&resultdata.data.success) {
 						message.success('提交成功',1,() => {
 							/*this.props.closeDlg();*/
-							window.location.href = 'https://wap.psbc.com/mobilebank/masterCard-peperInfoJumpActionNew.do?version=html5&sponsorNum=10389262&sponsorName=%E8%82%96%E5%86%9B&enterChannelNum=34000001&sponsorOrgan=#';
+							window.parent.location.href = 'https://wap.psbc.com/mobilebank/masterCard-peperInfoJumpActionNew.do?version=html5&sponsorNum=10389262&sponsorName=%E8%82%96%E5%86%9B&enterChannelNum=34000001&sponsorOrgan=#';
 						})
 					} else {
 						//message.error('提交失败');
-						window.location.href = 'https://wap.psbc.com/mobilebank/masterCard-peperInfoJumpActionNew.do?version=html5&sponsorNum=10389262&sponsorName=%E8%82%96%E5%86%9B&enterChannelNum=34000001&sponsorOrgan=#';
+						window.parent.location.href = 'https://wap.psbc.com/mobilebank/masterCard-peperInfoJumpActionNew.do?version=html5&sponsorNum=10389262&sponsorName=%E8%82%96%E5%86%9B&enterChannelNum=34000001&sponsorOrgan=#';
 						console.log(resultdata.data.error);
 					}
 				} catch(e) {
