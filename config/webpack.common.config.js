@@ -32,7 +32,12 @@ const config = {
 			},{
 				test: /\.less$/,
 				use: [
-					MiniCssExtractPlugin.loader,
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: '../',
+						}
+					},
 					'css-loader',
 					'postcss-loader',
 					'less-loader'

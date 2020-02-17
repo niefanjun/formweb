@@ -2,6 +2,7 @@ import React from 'react';
 import './home.less';
 import { Row, Col } from 'antd';
 import titlebg from '@images/title-bg.jpg';
+import event1 from '@images/event-1.png';
 import SubmitDlg from './dlg.jsx';
 
 class Home extends React.Component {
@@ -56,6 +57,10 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
+				<a href="http://u11749594.viewer.maka.im/k/HZL86RDCW11749594" className="eventbox">
+					<img className="eventimg" src={event1} alt="event1"/>
+					<div className="moving-hand" />
+				</a>
 				{submitdlgFlag?<SubmitDlg closeDlg={this.closeDlg}/>:''}
 				<div className="bottom-btn" onClick={this.showDlg}>我要办理信用卡</div>
 			</div>
