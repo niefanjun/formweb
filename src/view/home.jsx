@@ -22,6 +22,9 @@ class Home extends React.Component {
 			submitdlgFlag: false
 		})
 	}
+	linkjump = (url) => {
+		window.parent.location.href = url;
+	}
 	render() {
 		const { submitdlgFlag } = this.state;
 		return (
@@ -57,10 +60,10 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
-				<a href="http://u11749594.viewer.maka.im/k/HZL86RDCW11749594" className="eventbox">
+				<div className="eventbox" onClick={this.linkjump('http://u11749594.viewer.maka.im/k/HZL86RDCW11749594')}>
 					<img className="eventimg" src={event1} alt="event1"/>
 					<div className="moving-hand" />
-				</a>
+				</div>
 				{submitdlgFlag?<SubmitDlg closeDlg={this.closeDlg}/>:''}
 				<div className="bottom-btn" onClick={this.showDlg}>我要办理信用卡</div>
 			</div>
