@@ -60,7 +60,7 @@ class Home extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className="eventbox" onClick={this.linkjump('http://u11749594.viewer.maka.im/k/HZL86RDCW11749594')}>
+				<div className="eventbox" onClick={() => this.linkjump('http://u11749594.viewer.maka.im/k/HZL86RDCW11749594')}>
 					<img className="eventimg" src={event1} alt="event1"/>
 					<div className="moving-hand" />
 				</div>
